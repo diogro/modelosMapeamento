@@ -9,14 +9,9 @@ Beamer Theme  : singapore
 
 [TITLE]
 
-# Madoko 
+# QTLs 101
 
-Madoko is a fast markdown processor for writing professional articles
-with a focus on simplicity and plain text readability.
-
-* Read the [reference manual].
-* Explore the upper-right toolbox menu to discover how Markdown works. 
-* `Alt-Q` reformats the current paragraph.
+![](images/anova_plot.png)
 
 Enjoy!
 
