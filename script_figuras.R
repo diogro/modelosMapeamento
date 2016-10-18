@@ -30,15 +30,17 @@ additive_regression = ggplot(pop_df, aes(genótipos, Fenótipo)) + geom_jitter(s
   scale_x_discrete(labels = c(-1, 0, 1)) + labs (x = "Genótipos", y = "Fenótipo") +
   geom_point(data = medias, size = 5, color = "red") + ggtitle("Regressão dos efeitos aditivos") + 
   geom_abline(slope = 1, intercept = 1)
-print(additive_regression)
 
 pop_df$dominance = ifelse(pop_df$genótipos == "LS",1,0)
-dominance_regression = ggplot(pop_df, aes(ifelse(genótipos == "LS",1,0) , Fenótipo)) + 
+medias_dm = ddply(pop_df, .(dominance), numcolwise(mean))
+dominance_regression = ggplot(pop_df, aes(dominance, Fenótipo)) + 
   geom_jitter(size = 2, width = 0.1) +
   scale_y_continuous(breaks = c(1, 0.5, 0, -1)+3, labels = c("a", "d", "0", "-a"))+ 
   scale_x_continuous(breaks = c(0, 1))+ 
   labs (x = "Genótipos", y = "Fenótipo") +
-  geom_point(data = medias, size = 5, color = "red") + 
+  geom_point(data = medias_dm, size = 5, color = "red") + 
   ggtitle("Regressão dos efeitos de dominância") + 
   geom_abline(slope = 0.5, intercept = 3)
-print(dominance_regression)
+
+ortigonal_regression = plot_grid(additive_regression, dominance_regression)
+print(ortigonal_regression)
