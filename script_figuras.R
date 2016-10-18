@@ -44,3 +44,6 @@ dominance_regression = ggplot(pop_df, aes(dominance, Fenótipo)) +
 
 ortigonal_regression = plot_grid(additive_regression, dominance_regression)
 print(ortigonal_regression)
+
+pop_df$additive = ifelse(pop_df$genótipos == "LS", 0, ifelse(pop_df$genótipos=="LL", 1, -1)) 
+summary(lm(Fenótipo ~ additive + dominance, data = pop_df))
