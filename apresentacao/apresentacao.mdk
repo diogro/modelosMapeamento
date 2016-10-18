@@ -1,9 +1,9 @@
 [INCLUDE=presentation]
-Title         : Demo presentation in Madoko
-Sub Title     : In both HTML and PDF
-Author        : Daan Leijen
-Affiliation   : Microsoft Research
-Email         : daan@microsoft.com
+Title         : Modelos de Mapeamento Genético
+Sub Title     : 
+Author        : Diogo Melo
+Affiliation   : LEM - USP
+Email         : diogro@gmail.com
 Reveal Theme  : solarized
 Beamer Theme  : singapore
 
