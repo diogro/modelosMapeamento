@@ -21,7 +21,7 @@ anova_plot = ggplot(pop_df, aes(genótipos, Fenótipo)) + geom_jitter(size = 2, 
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-save_plot("apresentacao/images/anova_plot.png", anova_plot, base_height = 5, base_aspect_ratio = 1.3, bg = "transparent")
+save_plot("apresentacao/images/anova_plot.png", anova_plot, base_height = 4, base_aspect_ratio = 1.3, bg = "transparent")
 
 set.seed(42)
 centered_anova_plot = ggplot(pop_df, aes(genótipos, Fenótipo)) + geom_jitter(size = 2, width = 0.2) + geom_hline(yintercept = 3) +
@@ -31,7 +31,7 @@ centered_anova_plot = ggplot(pop_df, aes(genótipos, Fenótipo)) + geom_jitter(s
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-save_plot("apresentacao/images/centered_anova_plot.png", centered_anova_plot, base_height = 5, base_aspect_ratio = 1.3, bg = "transparent")
+save_plot("apresentacao/images/centered_anova_plot.png", centered_anova_plot, base_height = 4, base_aspect_ratio = 1.3, bg = "transparent")
 
 set.seed(42)
 additive_regression = ggplot(pop_df, aes(genótipos, Fenótipo)) + geom_jitter(size = 2, width = 0.2) +
@@ -61,6 +61,6 @@ dominance_regression = ggplot(pop_df, aes(dominance, Fenótipo)) +
   )
 
 ortogonal_regression = plot_grid(additive_regression, dominance_regression)
-save_plot("apresentacao/images/ortogonal_regression_plot.png", ortogonal_regression, base_height = 5, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
+save_plot("apresentacao/images/ortogonal_regression_plot.png", ortogonal_regression, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
 
 summary(lm(Fenótipo ~ additive + dominance, data = pop_df))
