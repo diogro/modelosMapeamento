@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="generator" content="Madoko, version 1.0.3" />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <meta name="author" content="Diogo Melo" />
+  <title>Modelos de Mapeamento Genético</title>
+  <style type="text/css"  class="link">
+  /*# sourceURL=madoko.css */
+  
+  .madoko .toc>.tocblock .tocblock .tocblock {
+    margin-left: 2.25em;
+  }
+  .madoko .toc>.tocblock .tocblock {
+    margin-left: 1.5em;
+  }
+  .madoko .toc-contents>.tocblock>.tocitem {
+    font-weight: bold;
+  }
+  .madoko .toc {
+    margin-top: 1em;
+  }
+  .madoko p.para-continue {
+    margin-bottom: 0pt;
+  }
+  .madoko .para-block+p {
+    margin-top: 0pt;
+  }
+  .madoko ul.para-block, .madoko ol.para-block {
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+  }
+  .madoko ul.para-end, .madoko ol.para-end {
+    margin-bottom: 1em;
+  }
+  .madoko dl {
+    margin-left: 0em;
+  }
+  .madoko blockquote {
+    font-style: italic;
+  }
+  .madoko a.localref {
+    text-decoration: none;
+  }
+  .madoko a.localref:hover {
+    text-decoration: underline;
+  }
+  .madoko .footnotes {
+    font-size: smaller;
+    margin-top: 2em;
+  }
+  .madoko .footnotes hr {
+    width: 50%;
+    text-align: left;
+  }
+  .madoko .footnote { 
+    margin-left: 1em;
+  }
+  .madoko .footnote-before {
+    margin-left: -1em;
+    width: 1em;
+    display: inline-block;
+  }
+  .madoko .align-center, .madoko .align-center>p {
+    text-align: center !important;
+  }
+  .madoko .align-center pre {
+    text-align: left;
+  }
+  .madoko .align-center>* {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-left, .madoko .align-left>p {
+    text-align: left !important;
+  }
+  .madoko .align-left>* {
+    margin-left: 0pt !important;
+    margin-right: auto !important;
+  }
+  .madoko .align-right, .madoko .align-right>p {
+    text-align: right !important;
+  }
+  .madoko .align-right>* {
+    margin-left: auto !important;
+    margin-right: 0pt !important;
+  }
+  .madoko .align-center>table,
+  .madoko .align-left>table,
+  .madoko .align-right>table {
+    text-align: left !important;
+  }
+  .madoko .equation-before {
+    float: right;
+  }
+  .madoko .bibitem {
+    font-size: smaller;
+  }
+  .madoko .bibsearch {
+    font-size: x-small;
+    text-decoration:none;
+    color: black;
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  .madoko .block, .madoko .figure, .madoko .bibitem, .madoko .equation, .madoko div.math {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .figure {
+    padding: 0.5em;
+    margin-left: 0pt;
+    margin-right: 0pt;
+  }
+  .madoko .hidden {
+    display: none;
+  }
+  .madoko .invisible {
+    visibility: hidden;
+  }
+  .madoko.preview .invisible {
+    visibility: visible;
+    opacity: 0.5;
+  }
+  .madoko code.code, .madoko span.code {
+    white-space: pre-wrap;
+  }
+  .madoko hr, hr.madoko {
+    border: none;
+    border-bottom: black solid 1px;
+    margin-bottom: 0.5ex;
+  }
+  .madoko .framed>*:first-child {
+    margin-top: 0pt;
+  }
+  .madoko .framed>*:last-child {
+    margin-bottom: 0pt;
+  }
+  .madoko ul.list-style-type-dash {
+      list-style-type: none !important;
+  }
+  .madoko ul.list-style-type-dash > li:before {
+      content: "\2013"; 
+      position: absolute;
+      margin-left: -1em; 
+  }
+  .madoko table.madoko {
+    border-collapse: collapse;
+  }
+  .madoko td, .madoko th {
+    padding: 0ex 0.5ex;
+    margin: 0pt;
+    vertical-align: top;
+  }
+  .madoko .cell-border-left {
+    border-left: 1px solid black;
+  }
+  .madoko .cell-border-right {
+    border-right: 1px solid black;
+  }
+  .madoko thead>tr:first-child>.cell-line,
+  .madoko tbody:first-child>tr:first-child>.cell-line {
+    border-top: 1px solid black;
+    border-bottom: none;
+  }
+  .madoko .cell-line, .madoko .cell-double-line {
+    border-bottom: 1px solid black;
+    border-top: none;
+  }
+  .madoko .cell-double-line {
+    border-top: 1px solid black;
+    padding-top: 1.5px !important;
+  }
+  .madoko .input-mathpre .MathJax_Display {
+    text-align: left !important;
+  }
+  .madoko div.input-mathpre {
+    text-align: left;
+    margin-top: 1.5ex;
+    margin-bottom: 1ex;
+  }
+  .madoko .math-rendering {
+    color: gray;
+  }
+  .madoko .mathdisplay {
+    text-align: center;
+  }
+  .madoko .pretty table {
+    border-collapse: collapse;
+  }
+  .madoko .pretty td {
+    padding: 0em;
+  }
+  .madoko .pretty td.empty {
+    min-width: 1.5ex;
+  }
+  .madoko .pretty td.expander {
+    width: 100em;
+  }
+  body.madoko, .madoko .serif {
+    font-family: Cambria,"Times New Roman","Liberation Serif","Times",serif;
+  }
+  .madoko .sans-serif {
+    font-family: "Calibri", "Optima", sans-serif;
+  }
+  .madoko .symbol {
+    font-family: "Segoe UI Symbol", Symbola, serif;
+  }
+  body.madoko {  
+    -webkit-text-size-adjust: 100%;       
+    text-rendering: optimizeLegibility;
+  }
+  body.madoko {
+    max-width: 88ex; 
+    margin: 1em auto;
+    padding: 0em 2em;  
+  }
+  body.preview.madoko {
+    padding: 0em 1em;
+  }
+  .madoko p {
+    text-align: justify;
+  }
+  .madoko h1, .madoko h2, .madoko h3, .madoko h4 { 
+    margin-top: 1.22em; 
+    margin-bottom: 1ex;
+  }
+  .madoko h1+p, .madoko h2+p, .madoko h3+p, .madoko h4+p, .madoko h5+p  { 
+    margin-top: 1ex;    
+  }
+  .madoko h5, .madoko h6 { 
+    margin-top: 1ex;
+    font-size: 1em;
+  }
+  .madoko h5 { 
+    margin-bottom: 0.5ex;
+  }
+  .madoko h5 + p {
+    margin-top: 0.5ex;
+  }
+  .madoko h6 { 
+    margin-bottom: 0pt;
+  }
+  .madoko h6 + p {
+    margin-top: 0pt;
+  }
+  .madoko pre, .madoko code, .madoko kbd, .madoko samp, .madoko tt, 
+  .madoko .monospace, .madoko .token-indent, .madoko .reveal pre, .madoko .reveal code, .madoko .email {
+    font-family: Consolas,"Andale Mono WT","Andale Mono",Lucida Console,Monaco,monospace,monospace;
+    font-size: 0.85em;
+  }
+  .madoko pre code, .madoko .token-indent {
+    font-size: 0.95em;
+  }
+  .madoko pre code {
+    font-family: inherit !important;
+  }
+  .madoko ol.linenums li {
+    background-color: white;
+    list-style-type: decimal;
+  }
+  .madoko .remote {
+    background-color: #F0FFF0;
+  }
+  .madoko .remote + * {
+    margin-top: 0pt;
+  }
+  @media print {
+    body.madoko {
+      font-size: 10pt;
+    }
+    @page {
+      margin: 1in 1.5in;
+    }
+  }
+  @media only screen and (max-device-width:1024px) {
+    body.madoko {
+      padding: 0em 0.5em;    
+    }
+    .madoko li {
+      text-align: left;
+    }
+  }
+  
+    </style>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/reveal.min.css"  class="link">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/theme/solarized.css"  class="link">
+  <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/head.min.js"  class="script preview"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/js/reveal.js"  class="script preview"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/theme/solarized.css" id="theme">    
+      <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/html5shiv.js"></script>
+      <![endif]-->
+      <style>
+      body.madoko {
+        margin: 0pt;
+        padding: 0pt;
+        max-width: 100%;      
+      }
+      .madoko .reveal h1 {
+          font-size: 3.7em;
+      }
+      .madoko .reveal h2 {
+          font-size: 2.1em;
+      }
+      .reveal .authorblock .author {
+          font-size: 120%;
+          margin-bottom: 1ex;
+      }        
+      .reveal table {
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .reveal pre table {
+        margin-left: 0pt;
+      }
+      .madoko .reveal pre.pretty {
+        padding-top: 0pt;
+        padding-bottom: 0pt;
+      }
+      .reveal li p {
+          text-align: left;
+      }
+      .reveal h2 {
+          margin-bottom: 0.7em;
+      }
+      .reveal section ul,
+      .reveal section ol {
+          margin-top: 0.35em;
+          margin-bottom: 0.35em;
+      }
+      .reveal section img.math-display {
+          padding: 1em;
+          box-shadow: none;
+          border: none;
+      }
+      .reveal section img.math-inline {
+          margin: 0pt;
+          padding: 0pt;
+          background-color: none;
+          box-shadow: none;
+          border: none;
+      }
+      .reveal section img {
+          box-shadow: none;
+          border: none;
+      }
+      .madoko .reveal pre {
+          border: 1px solid black;
+          word-wrap: normal;
+          background-color: white;
+          font-size: 0.7em;
+          padding: 0.7em;
+          line-height: 100%;
+          width: 100%;
+      }      
+      .reveal pre code, .reveal code {
+          padding: 0pt;
+      }
+      .reveal nav.toc {
+          line-height: 1em;
+          font-size: 60%;
+          overflow-y: auto;
+      }    
+      .reveal .tocitem {
+          text-align: left;
+      }
+      .reveal .toc>.tocblock .tocblock {
+          margin-left: 0.5em;
+      }   
+      .reveal .toc>.tocblock .tocblock .tocblock {
+          margin-left: 1em;
+      }
+      .reveal .bibliography {
+        height: 18em;
+        overflow-y: auto;
+        font-size: 0.8em;
+        line-height: 1.25;
+      }
+      .reveal section[data-smaller=""],
+      .reveal section[data-smaller="true"] {
+        font-size: 80%;
+        width: 110%;
+      }
+      .reveal .slides>section[data-smaller=""],
+      .reveal .slides>section[data-smaller="true"] {
+        left: -55%;
+      }
+      .reveal .details {
+        display: none;
+      }
+      .reveal[data-details=""] .details,
+      .reveal[data-details="true"] .details {
+        display: initial;
+      }
+      /* Display in the preview window */
+      html, body.madoko.preview, body.madoko.preview-full, .body.madoko {
+        height  : 100% !important;
+        width   : auto!important;
+        padding : 0pt !important;
+        margin  : 0pt !important;
+      }
+      body.madoko.preview, body.madoko.preview-full, .preview .body.madoko {
+        overflow: hidden !important;
+      }
+      body.preview .reveal .slides .fragment {
+        visibility: visible;
+        opacity: 0.5;
+      }
+      body.preview .reveal .slides .fragment.visible {
+        opacity: 1.0;
+      }
+      .preview .reveal div.notes,
+      .preview .reveal aside.notes {
+        display  : block;
+        position : absolute;
+        width    : 30%;
+        left     : 70%;
+        top      : -15%;
+        font-size: 50%;
+        border   : 1px solid black;
+        border-radius   : 10px;
+        background-color: white;
+      }
+      /* 'static' display in the preview window, unused for now */
+      body.preview.static div.reveal, 
+      body.preview.static div.ticreveal .slides, 
+      body.preview.static div.reveal section {
+        display: block !important;
+        position: relative !important;
+        width: auto !important;      
+      }
+      body.preview.static div.reveal section {
+        border: solid 1px black;
+        padding: 1em !important;
+        margin-top: 1em;
+        min-height: 15em;
+        top: 0pt;
+      }
+      body.madoko.preview.static section {
+        font-size: 75%;
+      }
+      body.madoko.preview.static {
+        padding: 0em 1em !important;
+      }
+      body.madoko.preview.static .reveal pre {
+        width: 95%;
+      }    
+      body.preview .reveal[data-details="false"] .details {
+        display: initial;
+        color: gray;
+      }
+      body.preview .reveal[data-long="false"] section[data-long] {
+        border-left: 2px black solid;
+      }
+      </style>
+      <script>    
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      window.revealConfig = {
+          controls: true,
+          progress: true,
+          history: true,
+          center: /^\s*(true|1)\s*$/i.test("true"),
+          slideNumber: /^\s*(true|1)\s*$/i.test("true"),
+          dependencies: [
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          ],
+      };
+      function revealAddFragments() {
+        [].forEach.call(document.querySelectorAll( ".fragmented" ), function(elem0) {
+          var elem = (/^H\d$/.test(elem0.nodeName) ? elem0.parentNode : elem0);
+          [].forEach.call(elem.children, function(item) {
+            if (item==elem0) return;
+            if (item && !/\bfragment(ed)?\b/.test(item.className) && item.nodeType===1) {
+              item.className = item.className + " fragment";
+            }
+          });
+        });
+      }
+      function revealQuotedList(listType) {
+        //compatibility with Rmarkdown slides
+        [].forEach.call( document.querySelectorAll("blockquote>" + listType), function(ul) {
+          if (!/\bfragmented\b/.test(ul.className)) {
+            ul.className = ul.className + " fragmented";
+          }        
+          var quote = ul.parentNode;
+          if (quote.childElementCount===1) {
+            quote.parentNode.replaceChild(ul,quote);
+          }
+        });
+      }
+      function revealBuildToFragmented() {
+        [].forEach.call(document.querySelectorAll( ".build" ), function(elem) {
+          if (elem && !/\bfragmented\b/.test(elem.className) && elem.nodeType===1) {
+            elem.className = elem.className + " fragmented";
+          }
+        });
+      }
+      function revealDivNotesToAside() {
+        [].forEach.call(document.querySelectorAll("div.notes"), function(elem) {
+          var aside = document.createElement("ASIDE");
+          if (elem.id) aside.id = elem.id;
+          aside.className = elem.className;
+          [].forEach.call(elem.attributes, function(attr) {
+            aside.setAttribute( attr.name, attr.value );
+          });
+          aside.innerHTML = elem.innerHTML;
+          elem.parentNode.replaceChild(aside,elem);
+        });
+      }
+      function revealDataQuery() {
+        var reveal = document.querySelector(".reveal");
+        if (!reveal) return;
+        window.location.search.replace(/\bdata-(\w+)(?:=(\w+))?\b/g, function(matched,key,value) {
+          reveal.setAttribute("data-" + key, (value ? value : ""));
+          return matched;
+        });
+      }
+      function revealRemoveLong() {
+        // remove parts for 'long' presentation
+        if (/\bpreview(?![\w\-])/.test(document.body.className)) return;
+        var reveal = document.querySelector(".reveal");
+        if (!reveal) return;
+        var value = reveal.hasAttribute("data-long") ? reveal.getAttribute("data-long") : null;
+        if (value==null || value=="false" || value=="0") {
+          [].forEach.call( document.querySelectorAll("section[data-long]"), function(elem) {
+            elem.parentNode.removeChild(elem);
+          });
+        }
+      }
+      revealConfig.onLoad = function() {
+        revealConfig.getEmbeddedImages();
+        revealDataQuery();
+        revealRemoveLong();
+        revealQuotedList("ul");
+        revealQuotedList("ol");
+        revealBuildToFragmented();
+        revealDivNotesToAside();
+        revealAddFragments();
+      };
+      document.addEventListener("load",revealConfig.onLoad);    
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof Reveal !== "undefined" && !Reveal.isReady()) {
+          revealConfig.onLoad();
+          Reveal.initialize(revealConfig);
+        }
+      });    
+      // add support for printing:
+      // use  ?print-pdf to get a pdf-printable version (in Chrome)
+      // use  ?print-paper to get a paper-printable version.
+      revealConfig.initPrint = function() {
+        var cssLink = null;
+        var bodyClass = null;
+        var cap = window.location.search.match(/\bprint-(\w+)\b/);
+        if (cap) {
+          bodyClass = cap[0];
+          cssLink = "https://cdn.jsdelivr.net/reveal.js/2.6.2/css/print/" + cap[1] + ".css";
+        }
+        if (cssLink) {
+          var link  = document.createElement( "link" );
+          link.rel  = "stylesheet";
+          link.type = "text/css";
+          link.href = cssLink;
+          var head = document.getElementsByTagName( 'head' )[0];
+          if (head) head.appendChild( link );
+        }
+        if (bodyClass) {
+          document.body.className = document.body.className + " " + bodyClass;
+        }
+      };
+      revealConfig.getEmbeddedImages = function() {
+        var images = {};
+        [].forEach.call( document.querySelectorAll("img[data-linkid]"), function(img) {
+          var linkid = img.getAttribute("data-linkid");
+          if (linkid) images["/" + linkid] = img.src;
+          var path = img.getAttribute("data-path");
+          if (path) images["/" + path] = img.src;
+        });     
+        [].forEach.call( document.querySelectorAll("section"), function(slide) {
+          var attrName = "data-background";
+          var image = slide.getAttribute(attrName);
+          if (!image) {
+            attrName = "data-background-image";
+            image = slide.getAttribute(attrName);
+          }
+          if (!image) return;
+          var cap = /^\s*!?\[([^\]]+)\]\s*$/.exec(image);
+          var href = images["/" + (cap ? cap[1] : image)];
+          if (!href) return;
+          if (attrName==="data-background" && /^data:/.test(href)) href = "url(" + href + ")";
+          slide.setAttribute(attrName, href);
+        });
+      };    
+      </script>
+  </head>
+<body class="madoko">
+
+<div class="body madoko" style="line-adjust:0">
+<div class="reveal" data-long="false" data-details="false" style="line-adjust:0">
+<div class="slides" style="line-adjust:0">
+
+<section class="titleblock align-center para-block" style="text-align:center;line-adjust:0">
+<div class="titleheader align-center" style="text-align:center;line-adjust:0">
+<h1 class="title para-block" style="font-weight:bold;margin-bottom:0.5ex;font-size:3em;line-adjust:0">Modelos de Mapeamento Genético</h1></div>
+<div class="authors align-center" style="text-align:center;width:80%;line-adjust:0"><table class="authorrow columns block" style="margin-top:2ex;width:100%;line-adjust:0">
+<tbody><tr><td class="author column" style="text-align:center;font-size:x-large;line-adjust:0">
+<div class="authorname" style="font-size:1.4em;line-adjust:0">Diogo Melo</div>
+<div class="authoraddress" style="line-adjust:0">LEM - USP</div>
+<div class="authoremail email" style="line-adjust:0">diogro@gmail.com</div></td></tr></tbody></table></div></section>
+<section id="sec-madoko" class="section section1" data-section-depth="1"><h2 id="heading-sec-madoko" class="h1" data-heading-depth="1" style="display:block">Madoko</h2>
+<p class="p noindent">Madoko is a fast markdown processor for writing professional articles
+with a focus on simplicity and plain text readability.
+</p>
+<ul class="ul list-star compact">
+<li class="li ul-li list-star-li compact-li">Read the&nbsp;<a href="http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html" title="Madoko reference manual" data-linkid="reference manual">reference manual</a>.
+</li>
+<li class="li ul-li list-star-li compact-li">Explore the upper-right toolbox menu to discover how Markdown works. 
+</li>
+<li class="li ul-li list-star-li compact-li"><code class="code code1">Alt-Q</code> reformats the current paragraph.
+</li></ul>
+
+<p class="p noindent">Enjoy!
+</p></section></div></div><span data-line=""></span></div>
+</body>
+<script>
+    // initialize printing
+    revealConfig.initPrint();
+    // initialize background embedded images
+    revealConfig.getEmbeddedImages();
+    </script>
+</html>
