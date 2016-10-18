@@ -214,8 +214,6 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 
 # Modelos Penalizados Hierárquicos
 
-
-
 - Ou: agora sim, vamos todos enlouquecer
 
 - {.fragment} Solução óbvia na cabeça de um Bayesiano: vamos colocar um parâmetro de shrinkage por efeito estimado 
