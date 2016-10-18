@@ -7,8 +7,20 @@ Email         : diogro@gmail.com
 Reveal Theme  : solarized
 Beamer Theme  : singapore
 Package       : amsmath
+Package       : setspace
+Package       : mathptmx
+Package       : stackengine
+Package       : url
 Transition    : linear
 Locale        : pt_br
+
+~ MathDefs 
+\parskip 1em
+\newcommand\stackequal[2]{%
+  \mathrel{\stackunder[2pt]{\stackon[4pt]{=}{$\scriptscriptstyle#1$}}{%
+  $\scriptscriptstyle#2$}}}
+\def\useanchorwidth{F}
+~ 
 
 <script>
 revealConfig.transition='linear';
@@ -51,7 +63,7 @@ Ligação entre genótipo de fenótipo
 - Para o marcador $j$ 
 
 ~ Equation
-E[y_i] = 
+E[y_i] = \mu +
 a_j X_{ij}^a +
 d_j X_{ij}^d
 ~
@@ -77,7 +89,7 @@ Incluimos marcadores antes e depois do marcador de interesse
 
 ~ Equation
 \begin{aligned}
-E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
+E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 &+ a_{j-1} X_{ij-1}^{a} + d_{j-1} X_{ij-1}^{d} + \\
 &+ a_{j+1} X_{ij+1}^{a} + d_{j+1} X_{ij+1}^{d}
 \end{aligned}
@@ -98,14 +110,14 @@ E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 ![](images/crosses.png){ width:800px }
 ~
 
-# Modelos mistos para a F3
+# Modelos hierárquicos para a F3
 
 - Para um indivíduo da familia $k$
 
 ~ Equation
-E[y_{ik}] = 
+E[y_i] = \mu + \beta_{k[i]}
 a_j X_{ij}^a +
-d_j X_{ij}^d + \beta_k
+d_j X_{ij}^d 
 ~
 
 ~ Equation
@@ -113,4 +125,62 @@ d_j X_{ij}^d + \beta_k
 ~
 
 - {.fragment} Mesma coisa pra interval mapping
+- {.fragment} Funciona, mas é muito lento
 
+# Modelos megalomaníacos
+
+- Será que podemos ajustar todos os marcadores ao mesmo tempo?
+
+~ Equation
+E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a + d_j X_{ij}^d
+~
+
+- {.fragment} Alta correlação entre os preditores causa um monte de problemas
+
+# Notações equivalentes
+
+~ Equation
+E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
+~
+
+~ Equation {.fragment}
+    (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2 \right \}
+~ 
+
+# Modelos penalizados
+
+- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero
+
+- The LASSO (least absolute shrinkage and selection operator)
+
+~ Equation {.fragment}
+    (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2  
+    +  \lambda \sum_{j=1}^p \|a_j\| \right \}
+~ 
+
+# Modelos penalizados
+
+- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero
+
+- Ridge regression
+
+~ Equation {.fragment}
+    (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^N \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2  
+    +  \lambda \sum_{j=1}^p \|a_j\|^2 \right \}
+~ 
+
+# Modelos penalizados
+
+~ Center
+![](images/lasso_ridge.png)
+~
+
+# Formulação Bayesiana do LASSO
+
+~ Equation
+E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a + d_j X_{ij}^d
+~
+
+~ Equation
+P(a_j|\sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
+~
