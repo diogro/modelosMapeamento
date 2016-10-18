@@ -6,6 +6,8 @@ Affiliation   : LEM - USP
 Email         : diogro@gmail.com
 Reveal Theme  : solarized
 Beamer Theme  : singapore
+Package       : amsmath
+
 
 [TITLE]
 
@@ -16,6 +18,10 @@ Ligação entre genótipo de fenótipo
 # Populações experimentais
 
 ![](f2pop.png)
+
+# Populações experimentais
+
+![](f2popQtl.png)
 
 # QTLs via Anova
 
@@ -30,3 +36,45 @@ Ligação entre genótipo de fenótipo
 ![](images/ortogonal_regression_plot.png)
 
 # Regressão básica
+
+- Para o marcador $j$ 
+
+~ Equation
+E[y_i] = 
+a_j X_{ij}^a +
+d_j X_{ij}^d
+~
+
+~ Equation
+\begin{aligned}
+X_{ij}^{a} &\in 
+\begin{bmatrix} 
+  1 & 0 & -1 
+\end{bmatrix} \\
+X_{ij}^{d} &\in 
+\begin{bmatrix} 
+  1 & 0
+\end{bmatrix}
+\end{aligned}
+~
+
+# Problema de LD
+
+# Interval mapping
+
+Incluimos marcadores antes e depois do marcador de interesse
+
+~ Equation
+\begin{aligned}
+E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
+&+ a_{j-1} X_{ij-1}^{a} + d_{j-1} X_{ij-1}^{d} + \\
+&+ a_{j+1} X_{ij+1}^{a} + d_{j+1} X_{ij+1}^{d}
+\end{aligned}
+~
+
+# Interval mapping permite mapementos mais precisos
+
+
+# AIL e resolução de mapeamento
+
+![](f2pop.png)
