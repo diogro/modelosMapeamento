@@ -132,7 +132,7 @@ d_j X_{ij}^d
 - Será que podemos ajustar todos os marcadores ao mesmo tempo?
 
 ~ Equation
-E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a + d_j X_{ij}^d
+E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 ~
 
 - {.fragment} Alta correlação entre os preditores causa um monte de problemas
@@ -140,7 +140,7 @@ E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a + d_j X_{ij}^d
 # Notações equivalentes
 
 ~ Equation
-E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
+E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
 ~
 
 ~ Equation {.fragment}
@@ -149,9 +149,9 @@ E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
 
 # Modelos penalizados
 
-- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero
+- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero (nem todo marcador tem efeito fenotípico)
 
-- The LASSO (least absolute shrinkage and selection operator)
+- {.fragment} The LASSO (least absolute shrinkage and selection operator)
 
 ~ Equation {.fragment}
     (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2  
@@ -169,7 +169,7 @@ E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
     +  \lambda \sum_{j=1}^p \|a_j\|^2 \right \}
 ~ 
 
-# Modelos penalizados
+# O estimador Lasso e Ridge
 
 ~ Center
 ![](images/lasso_ridge.png)
@@ -178,9 +178,46 @@ E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
 # Formulação Bayesiana do LASSO
 
 ~ Equation
-E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a + d_j X_{ij}^d
+E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
 ~
 
 ~ Equation
-P(a_j|\sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
+P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
 ~
+
+# Formulação Bayesiana é sempre bom
+
+- Podemos usar amostradores para montar modelos mais complicados (Stan, JAGS, Bugs, PyMC...)
+- Podemos incluir os termos necessários para AIL (F3 pra frente)
+
+~ Equation
+E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
+~
+
+~ Equation
+  \beta_k \sim Normal(0, G)
+~
+
+~ Equation
+P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
+~
+
+
+# Lasso é legal, mas...
+
+- Não tem nenhuma forma objetiva de fazer mapeamento
+- Tende a escolher de forma meio arbitraria entre marcadores correlacionados (e encolher o resto pra zero)
+- Todas as estimativas de efeitos tem pelo menos um pouco de shrinkage 
+
+# Como estimar os efeitos precisamente e manter o shrinkage onde precisa?
+
+
+# Modelos Penalizados Hierárquicos
+
+
+
+- Ou: agora sim, vamos todos enlouquecer
+
+- {.fragment} Solução óbvia na cabeça de um Bayesiano: vamos colocar um parâmetro de shrinkage por efeito estimado 
+
+- {.fragment} Regra de ouro: "sempre que seu problema é muito complicado, talvez deixar ele mais complicado ajude"
