@@ -9,10 +9,24 @@ Beamer Theme  : singapore
 
 [TITLE]
 
-# QTLs 101
+# Mapeamento de QTLs
+
+Ligação entre genótipo de fenótipo
+
+# Populações experimentais
+
+![](f2pop.png)
+
+# QTLs via Anova
 
 ![](images/anova_plot.png)
 
-Enjoy!
+# Parametrizando via efeitos genéticos
 
-[reference manual]: http://research.microsoft.com/en-us/um/people/daan/madoko/doc/reference.html  "Madoko reference manual"
+![](images/centered_anova_plot.png)
+
+# Modelos de regressão 
+
+![](images/ortogonal_regression_plot.png)
+
+# Regressão básica
