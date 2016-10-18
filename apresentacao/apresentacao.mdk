@@ -17,11 +17,11 @@ Ligação entre genótipo de fenótipo
 
 # Populações experimentais
 
-![](f2pop.png)
+![](images/f2pop.png)
 
 # Populações experimentais
 
-![](f2popQtl.png)
+![](images/f2popQtl.png)
 
 # QTLs via Anova
 
@@ -77,4 +77,8 @@ E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 
 # AIL e resolução de mapeamento
 
-![](f2pop.png)
+![](images/f3pop.png)
+
+# F3 em diante tem estrutura familiar
+
+![](images/crosses.png)
