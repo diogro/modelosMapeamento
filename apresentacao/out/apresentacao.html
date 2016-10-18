@@ -4,6 +4,8 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <meta name="generator" content="Madoko, version 1.0.3" />
   <meta name="viewport" content="initial-scale=1.0" />
+  <meta name="author" content="Daan Leijen" />
+  <title>Demo presentation in Madoko</title>
   <style type="text/css"  class="link">
   /*# sourceURL=madoko.css */
   
@@ -281,447 +283,338 @@
   }
   
     </style>
-  
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/reveal.min.css"  class="link">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/theme/solarized.css"  class="link">
+  <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/head.min.js"  class="script preview"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/js/reveal.js"  class="script preview"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/2.6.2/css/theme/solarized.css" id="theme">    
+      <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/html5shiv.js"></script>
+      <![endif]-->
+      <style>
+      body.madoko {
+        margin: 0pt;
+        padding: 0pt;
+        max-width: 100%;      
+      }
+      .madoko .reveal h1 {
+          font-size: 3.7em;
+      }
+      .madoko .reveal h2 {
+          font-size: 2.1em;
+      }
+      .reveal .authorblock .author {
+          font-size: 120%;
+          margin-bottom: 1ex;
+      }        
+      .reveal table {
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .reveal pre table {
+        margin-left: 0pt;
+      }
+      .madoko .reveal pre.pretty {
+        padding-top: 0pt;
+        padding-bottom: 0pt;
+      }
+      .reveal li p {
+          text-align: left;
+      }
+      .reveal h2 {
+          margin-bottom: 0.7em;
+      }
+      .reveal section ul,
+      .reveal section ol {
+          margin-top: 0.35em;
+          margin-bottom: 0.35em;
+      }
+      .reveal section img.math-display {
+          padding: 1em;
+          box-shadow: none;
+          border: none;
+      }
+      .reveal section img.math-inline {
+          margin: 0pt;
+          padding: 0pt;
+          background-color: none;
+          box-shadow: none;
+          border: none;
+      }
+      .reveal section img {
+          box-shadow: none;
+          border: none;
+      }
+      .madoko .reveal pre {
+          border: 1px solid black;
+          word-wrap: normal;
+          background-color: white;
+          font-size: 0.7em;
+          padding: 0.7em;
+          line-height: 100%;
+          width: 100%;
+      }      
+      .reveal pre code, .reveal code {
+          padding: 0pt;
+      }
+      .reveal nav.toc {
+          line-height: 1em;
+          font-size: 60%;
+          overflow-y: auto;
+      }    
+      .reveal .tocitem {
+          text-align: left;
+      }
+      .reveal .toc>.tocblock .tocblock {
+          margin-left: 0.5em;
+      }   
+      .reveal .toc>.tocblock .tocblock .tocblock {
+          margin-left: 1em;
+      }
+      .reveal .bibliography {
+        height: 18em;
+        overflow-y: auto;
+        font-size: 0.8em;
+        line-height: 1.25;
+      }
+      .reveal section[data-smaller=""],
+      .reveal section[data-smaller="true"] {
+        font-size: 80%;
+        width: 110%;
+      }
+      .reveal .slides>section[data-smaller=""],
+      .reveal .slides>section[data-smaller="true"] {
+        left: -55%;
+      }
+      .reveal .details {
+        display: none;
+      }
+      .reveal[data-details=""] .details,
+      .reveal[data-details="true"] .details {
+        display: initial;
+      }
+      /* Display in the preview window */
+      html, body.madoko.preview, body.madoko.preview-full, .body.madoko {
+        height  : 100% !important;
+        width   : auto!important;
+        padding : 0pt !important;
+        margin  : 0pt !important;
+      }
+      body.madoko.preview, body.madoko.preview-full, .preview .body.madoko {
+        overflow: hidden !important;
+      }
+      body.preview .reveal .slides .fragment {
+        visibility: visible;
+        opacity: 0.5;
+      }
+      body.preview .reveal .slides .fragment.visible {
+        opacity: 1.0;
+      }
+      .preview .reveal div.notes,
+      .preview .reveal aside.notes {
+        display  : block;
+        position : absolute;
+        width    : 30%;
+        left     : 70%;
+        top      : -15%;
+        font-size: 50%;
+        border   : 1px solid black;
+        border-radius   : 10px;
+        background-color: white;
+      }
+      /* 'static' display in the preview window, unused for now */
+      body.preview.static div.reveal, 
+      body.preview.static div.ticreveal .slides, 
+      body.preview.static div.reveal section {
+        display: block !important;
+        position: relative !important;
+        width: auto !important;      
+      }
+      body.preview.static div.reveal section {
+        border: solid 1px black;
+        padding: 1em !important;
+        margin-top: 1em;
+        min-height: 15em;
+        top: 0pt;
+      }
+      body.madoko.preview.static section {
+        font-size: 75%;
+      }
+      body.madoko.preview.static {
+        padding: 0em 1em !important;
+      }
+      body.madoko.preview.static .reveal pre {
+        width: 95%;
+      }    
+      body.preview .reveal[data-details="false"] .details {
+        display: initial;
+        color: gray;
+      }
+      body.preview .reveal[data-long="false"] section[data-long] {
+        border-left: 2px black solid;
+      }
+      </style>
+      <script>    
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      window.revealConfig = {
+          controls: true,
+          progress: true,
+          history: true,
+          center: /^\s*(true|1)\s*$/i.test("true"),
+          slideNumber: /^\s*(true|1)\s*$/i.test("true"),
+          dependencies: [
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'https://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          ],
+      };
+      function revealAddFragments() {
+        [].forEach.call(document.querySelectorAll( ".fragmented" ), function(elem0) {
+          var elem = (/^H\d$/.test(elem0.nodeName) ? elem0.parentNode : elem0);
+          [].forEach.call(elem.children, function(item) {
+            if (item==elem0) return;
+            if (item && !/\bfragment(ed)?\b/.test(item.className) && item.nodeType===1) {
+              item.className = item.className + " fragment";
+            }
+          });
+        });
+      }
+      function revealQuotedList(listType) {
+        //compatibility with Rmarkdown slides
+        [].forEach.call( document.querySelectorAll("blockquote>" + listType), function(ul) {
+          if (!/\bfragmented\b/.test(ul.className)) {
+            ul.className = ul.className + " fragmented";
+          }        
+          var quote = ul.parentNode;
+          if (quote.childElementCount===1) {
+            quote.parentNode.replaceChild(ul,quote);
+          }
+        });
+      }
+      function revealBuildToFragmented() {
+        [].forEach.call(document.querySelectorAll( ".build" ), function(elem) {
+          if (elem && !/\bfragmented\b/.test(elem.className) && elem.nodeType===1) {
+            elem.className = elem.className + " fragmented";
+          }
+        });
+      }
+      function revealDivNotesToAside() {
+        [].forEach.call(document.querySelectorAll("div.notes"), function(elem) {
+          var aside = document.createElement("ASIDE");
+          if (elem.id) aside.id = elem.id;
+          aside.className = elem.className;
+          [].forEach.call(elem.attributes, function(attr) {
+            aside.setAttribute( attr.name, attr.value );
+          });
+          aside.innerHTML = elem.innerHTML;
+          elem.parentNode.replaceChild(aside,elem);
+        });
+      }
+      function revealDataQuery() {
+        var reveal = document.querySelector(".reveal");
+        if (!reveal) return;
+        window.location.search.replace(/\bdata-(\w+)(?:=(\w+))?\b/g, function(matched,key,value) {
+          reveal.setAttribute("data-" + key, (value ? value : ""));
+          return matched;
+        });
+      }
+      function revealRemoveLong() {
+        // remove parts for 'long' presentation
+        if (/\bpreview(?![\w\-])/.test(document.body.className)) return;
+        var reveal = document.querySelector(".reveal");
+        if (!reveal) return;
+        var value = reveal.hasAttribute("data-long") ? reveal.getAttribute("data-long") : null;
+        if (value==null || value=="false" || value=="0") {
+          [].forEach.call( document.querySelectorAll("section[data-long]"), function(elem) {
+            elem.parentNode.removeChild(elem);
+          });
+        }
+      }
+      revealConfig.onLoad = function() {
+        revealConfig.getEmbeddedImages();
+        revealDataQuery();
+        revealRemoveLong();
+        revealQuotedList("ul");
+        revealQuotedList("ol");
+        revealBuildToFragmented();
+        revealDivNotesToAside();
+        revealAddFragments();
+      };
+      document.addEventListener("load",revealConfig.onLoad);    
+      document.addEventListener("DOMContentLoaded", function() {
+        if (typeof Reveal !== "undefined" && !Reveal.isReady()) {
+          revealConfig.onLoad();
+          Reveal.initialize(revealConfig);
+        }
+      });    
+      // add support for printing:
+      // use  ?print-pdf to get a pdf-printable version (in Chrome)
+      // use  ?print-paper to get a paper-printable version.
+      revealConfig.initPrint = function() {
+        var cssLink = null;
+        var bodyClass = null;
+        var cap = window.location.search.match(/\bprint-(\w+)\b/);
+        if (cap) {
+          bodyClass = cap[0];
+          cssLink = "https://cdn.jsdelivr.net/reveal.js/2.6.2/css/print/" + cap[1] + ".css";
+        }
+        if (cssLink) {
+          var link  = document.createElement( "link" );
+          link.rel  = "stylesheet";
+          link.type = "text/css";
+          link.href = cssLink;
+          var head = document.getElementsByTagName( 'head' )[0];
+          if (head) head.appendChild( link );
+        }
+        if (bodyClass) {
+          document.body.className = document.body.className + " " + bodyClass;
+        }
+      };
+      revealConfig.getEmbeddedImages = function() {
+        var images = {};
+        [].forEach.call( document.querySelectorAll("img[data-linkid]"), function(img) {
+          var linkid = img.getAttribute("data-linkid");
+          if (linkid) images["/" + linkid] = img.src;
+          var path = img.getAttribute("data-path");
+          if (path) images["/" + path] = img.src;
+        });     
+        [].forEach.call( document.querySelectorAll("section"), function(slide) {
+          var attrName = "data-background";
+          var image = slide.getAttribute(attrName);
+          if (!image) {
+            attrName = "data-background-image";
+            image = slide.getAttribute(attrName);
+          }
+          if (!image) return;
+          var cap = /^\s*!?\[([^\]]+)\]\s*$/.exec(image);
+          var href = images["/" + (cap ? cap[1] : image)];
+          if (!href) return;
+          if (attrName==="data-background" && /^data:/.test(href)) href = "url(" + href + ")";
+          slide.setAttribute(attrName, href);
+        });
+      };    
+      </script>
   </head>
 <body class="madoko">
 
 <div class="body madoko" style="line-adjust:0">
-<div class="remote" style="margin-bottom:0pt">Title         : Modelos de Mapeamento Genético
-Author        : Diogo Melo
-Logo          : True</div>
-<p class="p noindent">Documentation: 
-    Include this file to create slide shows using [Reveal.js] for HTML and
-    the [Beamer] package for LaTeX.
-    <em class="em-star1"> Slides are started on a level 1 <code class="code code1">#</code> or 2 <code class="code code1">##</code> header.
-      You can also a <code class="code code1">~ Slide</code> custom block.
-    </em> Use the <code class="code code1">.fragment</code> class to create overlays that appear one by one.
-    <em class="em-star1"> Use the <code class="code code1">.fragmented</code> class on a list to have each item appear in order.
-    </em> Use a <code class="code code1">~ Notes</code> custom block for speaker notes (only for HTML for now).
-    * Use a <code class="code code1">~ Vertical</code> custom block to create a set of vertical slides (only for HTML).
-    <br>
-    Notes for Reveal.js:
-    <em class="em-star1"> It expects the reveal.js library to be in a subdirectory &#8220;reveal.js&#8221;.
-      You can use another url by setting the <code class="code code1">Reveal Url</code> metadata key.
-    </em> Select another default theme by setting the <code class="code code1">Reveal Theme</code>, like <code class="code code1">sky</code> for example.
-    * The &#8220;revealConfig&#8221; variable contains the default configuration options
-        and can be extended inside <code class="code code1">&lt;script&gt;</code> tags.
-    <br>
-    Notes for the beamer package:
-    <em class="em-star1"> Set the <code class="code code1">Beamer Theme</code> metadata key to select anther theme.
-    </em> Set the <code class="code code1">Beamer Theme Options</code> for different options for the theme.
-    * Use the <code class="code code1">.pause</code> class to insert pauses.
-    <br>
-</p>
-<pre class="para-block pre-indented" style="display:block"><code>[Reveal.js]: http://lab.hakim.se/reveal-js/#/
-[Beamer]: http://en.wikibooks.org/wiki/LaTeX/Presentations</code></pre>
-<p class="p noindent para-continued">Reveal Url    : https://cdn.jsdelivr.net/reveal.js/2.6.2      <br>
-Reveal Theme  : default
-Beamer Theme  : default
-Beamer Theme Options: 
-Reveal Long       : false
-Reveal Details    : false
-Reveal SlideNumber: true
-Reveal History    : true
-Document Class: [xcolor=table]beamer
-Css           : &reveal-url;/css/reveal.min.css
-Css           : &reveal-url;/css/theme/&reveal-theme;.css
-Script        : &reveal-url;/lib/js/head.min.js { .preview }
-Script        : &reveal-url;/js/reveal.js { .preview }
-Heading Depth : 0
-Toc Depth     : 2
-Section Base  : 2
-Section Depth : 2
-</p>
-<p class="p indent">.heading-contents  { display:none }
-.MadokoLogo   { font-size:50% }
-Notes         { html-elem:aside; .notes }
-Author        { font-size:x-large }
-TitleBlock    { html-elem:section }
-Title         { font-size:3em; html-elem:h1 }
-AuthorName    { font-size:1.4em }
-SubTitle      { font-size:1.8em; html-elem:h2 }
-Body          { 
-  before:&#8216;~ Begin Reveal { data-long:&#8220;&reveal-long;&#8221;; data-details:&#8220;&reveal-details;&#8221;;  line-adjust:0; &reveal-attrs;}
-~ Begin Slides {line-adjust:0}
-&#8217;;
-  after:&#8216;~ End Slides
-~ End Reveal
-&#8217;;
-}
-Slide         { .section; html-elem:section; tex-elem:mdSection }
-Vertical      { .section; html-elem:section }
-.smaller      { data-smaller }
-.long         { data-long }
-</p>
-<p class="p indent">@if tex {
-  Notes       { display:none }
-  Vertical    { tag: false }
-  Maketitle: True
-}
-</p>
-<p class="p indent">@if tex2 {
-  Slide,Section { tex-env:mdframe }
-  H1,H2,H3      { tex-cmd:&#8220;\frametitle&#8221; }
-  .pause        { tex-cmd-outer-before:&#8220;\pause&#8221; }
-  .fragment     { tex-env-outer:&#8220;onlyenv&lt;+-&gt;&#8221; }
-  .fragmented   { tex-env-inner:mdfragmented }
-}
-</p>
-<p class="p indent">@if html {
-  .toc         { height: 20em; }
-  bibl         { before:clear; }
-}
-</p>
-<p class="p indent">Tex Header    :
-    \ifbeamer\relax\else
-      \providecommand{\usetheme}[2][]{}
-      \providecommand{\usecolortheme}[2][]{}
-      \providecommand{\usefonttheme}[2][]{}
-      \providecommand{\pause}[1][]{}
-      \providecommand{\AtBeginSection}[2][]{}
-      \providecommand{\AtBeginSubsection}[2][]{}
-      \providecommand{\AtBeginSubsubsection}[2][]{}
-      \providecommand{\AtBeginPart}[2][]{}
-      \providecommand{\AtBeginLecture}[2][]{}
-      \providecommand{\theoremstyle}[2][]{}
-      \makeatletter
-      \def\newtheorem{@ifstar\newtheoremx\newtheoremx}
-      \makeatother
-      \providecommand{\newtheoremx}[3][]{}{}
-    \fi
-Tex Header*   :
-    \ifbeamer\usetheme&beamer-theme-options;\fi
-Html Header   :         
-</p>
-<pre class="para-block pre-indented" style="display:block"><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
-&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black-translucent&quot; /&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;&amp;reveal-url;/css/theme/&amp;reveal-theme;.css&quot; id=&quot;theme&quot;&gt;    
-&lt;!--[if lt IE 9]&gt;
-&lt;script src=&quot;&amp;reveal-url;/lib/js/html5shiv.js&quot;&gt;&lt;/script&gt;
-&lt;![endif]--&gt;
-&lt;style&gt;
-body.madoko {
-  margin: 0pt;
-  padding: 0pt;
-  max-width: 100%;      
-}
-.madoko .reveal h1 {
-    font-size: 3.7em;
-}
-.madoko .reveal h2 {
-    font-size: 2.1em;
-}
-.reveal .authorblock .author {
-    font-size: 120%;
-    margin-bottom: 1ex;
-}        
-.reveal table {
-    margin-left: auto;
-    margin-right: auto;
-}
-.reveal pre table {
-  margin-left: 0pt;
-}
-.madoko .reveal pre.pretty {
-  padding-top: 0pt;
-  padding-bottom: 0pt;
-}
-.reveal li p {
-    text-align: left;
-}
-.reveal h2 {
-    margin-bottom: 0.7em;
-}
-.reveal section ul,
-.reveal section ol {
-    margin-top: 0.35em;
-    margin-bottom: 0.35em;
-}
-.reveal section img.math-display {
-    padding: 1em;
-    box-shadow: none;
-    border: none;
-}
-.reveal section img.math-inline {
-    margin: 0pt;
-    padding: 0pt;
-    background-color: none;
-    box-shadow: none;
-    border: none;
-}
-.reveal section img {
-    box-shadow: none;
-    border: none;
-}
-.madoko .reveal pre {
-    border: 1px solid black;
-    word-wrap: normal;
-    background-color: white;
-    font-size: 0.7em;
-    padding: 0.7em;
-    line-height: 100%;
-    width: 100%;
-}      
-.reveal pre code, .reveal code {
-    padding: 0pt;
-}
-.reveal nav.toc {
-    line-height: 1em;
-    font-size: 60%;
-    overflow-y: auto;
-}    
-.reveal .tocitem {
-    text-align: left;
-}
-.reveal .toc&gt;.tocblock .tocblock {
-    margin-left: 0.5em;
-}   
-.reveal .toc&gt;.tocblock .tocblock .tocblock {
-    margin-left: 1em;
-}
-.reveal .bibliography {
-  height: 18em;
-  overflow-y: auto;
-  font-size: 0.8em;
-  line-height: 1.25;
-}
-.reveal section[data-smaller=&quot;&quot;],
-.reveal section[data-smaller=&quot;true&quot;] {
-  font-size: 80%;
-  width: 110%;
-}
-.reveal .slides&gt;section[data-smaller=&quot;&quot;],
-.reveal .slides&gt;section[data-smaller=&quot;true&quot;] {
-  left: -55%;
-}
-.reveal .details {
-  display: none;
-}
-.reveal[data-details=&quot;&quot;] .details,
-.reveal[data-details=&quot;true&quot;] .details {
-  display: initial;
-}
-/* Display in the preview window */
-html, body.madoko.preview, body.madoko.preview-full, .body.madoko {
-  height  : 100% !important;
-  width   : auto!important;
-  padding : 0pt !important;
-  margin  : 0pt !important;
-}
-body.madoko.preview, body.madoko.preview-full, .preview .body.madoko {
-  overflow: hidden !important;
-}
-body.preview .reveal .slides .fragment {
-  visibility: visible;
-  opacity: 0.5;
-}
-body.preview .reveal .slides .fragment.visible {
-  opacity: 1.0;
-}
-.preview .reveal div.notes,
-.preview .reveal aside.notes {
-  display  : block;
-  position : absolute;
-  width    : 30%;
-  left     : 70%;
-  top      : -15%;
-  font-size: 50%;
-  border   : 1px solid black;
-  border-radius   : 10px;
-  background-color: white;
-}
-/* &#39;static&#39; display in the preview window, unused for now */
-body.preview.static div.reveal, 
-body.preview.static div.ticreveal .slides, 
-body.preview.static div.reveal section {
-  display: block !important;
-  position: relative !important;
-  width: auto !important;      
-}
-body.preview.static div.reveal section {
-  border: solid 1px black;
-  padding: 1em !important;
-  margin-top: 1em;
-  min-height: 15em;
-  top: 0pt;
-}
-body.madoko.preview.static section {
-  font-size: 75%;
-}
-body.madoko.preview.static {
-  padding: 0em 1em !important;
-}
-body.madoko.preview.static .reveal pre {
-  width: 95%;
-}    
-body.preview .reveal[data-details=&quot;false&quot;] .details {
-  display: initial;
-  color: gray;
-}
-body.preview .reveal[data-long=&quot;false&quot;] section[data-long] {
-  border-left: 2px black solid;
-}
-&lt;/style&gt;
-&lt;script&gt;    
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-window.revealConfig = {
-    controls: true,
-    progress: true,
-    history: &amp;reveal-history;,
-    center: /^\s*(true|1)\s*$/i.test(&quot;&amp;reveal-history;&quot;),
-    slideNumber: /^\s*(true|1)\s*$/i.test(&quot;&amp;reveal-slidenumber;&quot;),
-    dependencies: [
-      { src: &#39;&amp;reveal-url;/lib/js/classList.js&#39;, condition: function() { return !document.body.classList; } },
-      { src: &#39;&amp;reveal-url;/plugin/zoom-js/zoom.js&#39;, async: true, condition: function() { return !!document.body.classList; } },
-      { src: &#39;&amp;reveal-url;/plugin/notes/notes.js&#39;, async: true, condition: function() { return !!document.body.classList; } },
-    ],
-};
-function revealAddFragments() {
-  [].forEach.call(document.querySelectorAll( &quot;.fragmented&quot; ), function(elem0) {
-    var elem = (/^H\d$/.test(elem0.nodeName) ? elem0.parentNode : elem0);
-    [].forEach.call(elem.children, function(item) {
-      if (item==elem0) return;
-      if (item &amp;&amp; !/\bfragment(ed)?\b/.test(item.className) &amp;&amp; item.nodeType===1) {
-        item.className = item.className + &quot; fragment&quot;;
-      }
-    });
-  });
-}
-function revealQuotedList(listType) {
-  //compatibility with Rmarkdown slides
-  [].forEach.call( document.querySelectorAll(&quot;blockquote&gt;&quot; + listType), function(ul) {
-    if (!/\bfragmented\b/.test(ul.className)) {
-      ul.className = ul.className + &quot; fragmented&quot;;
-    }        
-    var quote = ul.parentNode;
-    if (quote.childElementCount===1) {
-      quote.parentNode.replaceChild(ul,quote);
-    }
-  });
-}
-function revealBuildToFragmented() {
-  [].forEach.call(document.querySelectorAll( &quot;.build&quot; ), function(elem) {
-    if (elem &amp;&amp; !/\bfragmented\b/.test(elem.className) &amp;&amp; elem.nodeType===1) {
-      elem.className = elem.className + &quot; fragmented&quot;;
-    }
-  });
-}
-function revealDivNotesToAside() {
-  [].forEach.call(document.querySelectorAll(&quot;div.notes&quot;), function(elem) {
-    var aside = document.createElement(&quot;ASIDE&quot;);
-    if (elem.id) aside.id = elem.id;
-    aside.className = elem.className;
-    [].forEach.call(elem.attributes, function(attr) {
-      aside.setAttribute( attr.name, attr.value );
-    });
-    aside.innerHTML = elem.innerHTML;
-    elem.parentNode.replaceChild(aside,elem);
-  });
-}
-function revealDataQuery() {
-  var reveal = document.querySelector(&quot;.reveal&quot;);
-  if (!reveal) return;
-  window.location.search.replace(/\bdata-(\w+)(?:=(\w+))?\b/g, function(matched,key,value) {
-    reveal.setAttribute(&quot;data-&quot; + key, (value ? value : &quot;&quot;));
-    return matched;
-  });
-}
-function revealRemoveLong() {
-  // remove parts for &#39;long&#39; presentation
-  if (/\bpreview(?![\w\-])/.test(document.body.className)) return;
-  var reveal = document.querySelector(&quot;.reveal&quot;);
-  if (!reveal) return;
-  var value = reveal.hasAttribute(&quot;data-long&quot;) ? reveal.getAttribute(&quot;data-long&quot;) : null;
-  if (value==null || value==&quot;false&quot; || value==&quot;0&quot;) {
-    [].forEach.call( document.querySelectorAll(&quot;section[data-long]&quot;), function(elem) {
-      elem.parentNode.removeChild(elem);
-    });
-  }
-}
-revealConfig.onLoad = function() {
-  revealConfig.getEmbeddedImages();
-  revealDataQuery();
-  revealRemoveLong();
-  revealQuotedList(&quot;ul&quot;);
-  revealQuotedList(&quot;ol&quot;);
-  revealBuildToFragmented();
-  revealDivNotesToAside();
-  revealAddFragments();
-};
-document.addEventListener(&quot;load&quot;,revealConfig.onLoad);    
-document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-  if (typeof Reveal !== &quot;undefined&quot; &amp;&amp; !Reveal.isReady()) {
-    revealConfig.onLoad();
-    Reveal.initialize(revealConfig);
-  }
-});    
-// add support for printing:
-// use  ?print-pdf to get a pdf-printable version (in Chrome)
-// use  ?print-paper to get a paper-printable version.
-revealConfig.initPrint = function() {
-  var cssLink = null;
-  var bodyClass = null;
-  var cap = window.location.search.match(/\bprint-(\w+)\b/);
-  if (cap) {
-    bodyClass = cap[0];
-    cssLink = &quot;&amp;reveal-url;/css/print/&quot; + cap[1] + &quot;.css&quot;;
-  }
-  if (cssLink) {
-    var link  = document.createElement( &quot;link&quot; );
-    link.rel  = &quot;stylesheet&quot;;
-    link.type = &quot;text/css&quot;;
-    link.href = cssLink;
-    var head = document.getElementsByTagName( &#39;head&#39; )[0];
-    if (head) head.appendChild( link );
-  }
-  if (bodyClass) {
-    document.body.className = document.body.className + &quot; &quot; + bodyClass;
-  }
-};
-revealConfig.getEmbeddedImages = function() {
-  var images = {};
-  [].forEach.call( document.querySelectorAll(&quot;img[data-linkid]&quot;), function(img) {
-    var linkid = img.getAttribute(&quot;data-linkid&quot;);
-    if (linkid) images[&quot;/&quot; + linkid] = img.src;
-    var path = img.getAttribute(&quot;data-path&quot;);
-    if (path) images[&quot;/&quot; + path] = img.src;
-  });     
-  [].forEach.call( document.querySelectorAll(&quot;section&quot;), function(slide) {
-    var attrName = &quot;data-background&quot;;
-    var image = slide.getAttribute(attrName);
-    if (!image) {
-      attrName = &quot;data-background-image&quot;;
-      image = slide.getAttribute(attrName);
-    }
-    if (!image) return;
-    var cap = /^\s*!?\[([^\]]+)\]\s*$/.exec(image);
-    var href = images[&quot;/&quot; + (cap ? cap[1] : image)];
-    if (!href) return;
-    if (attrName===&quot;data-background&quot; &amp;&amp; /^data:/.test(href)) href = &quot;url(&quot; + href + &quot;)&quot;;
-    slide.setAttribute(attrName, href);
-  });
-};    
-&lt;/script&gt;</code></pre>
-<p class="p noindent para-continued">HTML Footer:
-</p>
-<pre class="para-block pre-indented" style="display:block"><code>&lt;script&gt;
-// initialize printing
-revealConfig.initPrint();
-// initialize background embedded images
-revealConfig.getEmbeddedImages();
-&lt;/script&gt;</code></pre>
-<p class="p noindent para-continued para-continue">Title         : Demo presentation in Madoko
-Sub Title     : In both HTML and PDF
-Author        : Daan Leijen
-Affiliation   : Microsoft Research
-Email         : daan@microsoft.com
-Reveal Theme  : solarized
-Beamer Theme  : singapore
-<!-- end merge -->
-</p>
-<div class="titleblock align-center para-block" style="text-align:center;line-adjust:0"></div><h2 id="sec-madoko" class="h1" data-heading-depth="1" style="display:block"><span class="heading-before"><span class="heading-label">1</span>.&#8194;</span>Madoko</h2>
+<div class="reveal" data-long="false" data-details="false" style="line-adjust:0">
+<div class="slides" style="line-adjust:0">
+
+<section class="titleblock align-center para-block" style="text-align:center;line-adjust:0">
+<div class="titleheader align-center" style="text-align:center;line-adjust:0">
+<h1 class="title para-block" style="font-weight:bold;margin-bottom:0.5ex;font-size:3em;line-adjust:0">Demo presentation in Madoko</h1>
+<h2 class="subtitle para-block" style="margin-bottom:0.5ex;font-size:1.8em;line-adjust:0">In both HTML and PDF</h2></div>
+<div class="authors align-center" style="text-align:center;width:80%;line-adjust:0"><table class="authorrow columns block" style="margin-top:2ex;width:100%;line-adjust:0">
+<tbody><tr><td class="author column" style="text-align:center;font-size:x-large;line-adjust:0">
+<div class="authorname" style="font-size:1.4em;line-adjust:0">Daan Leijen</div>
+<div class="authoraddress" style="line-adjust:0">Microsoft Research</div>
+<div class="authoremail email" style="line-adjust:0">daan@microsoft.com</div></td></tr></tbody></table></div></section>
+<section id="sec-madoko" class="section section1" data-section-depth="1"><h2 id="heading-sec-madoko" class="h1" data-heading-depth="1" style="display:block">Madoko</h2>
 <p class="p noindent">Madoko is a fast markdown processor for writing professional articles
 with a focus on simplicity and plain text readability.
 </p>
@@ -734,7 +627,7 @@ with a focus on simplicity and plain text readability.
 </li></ul>
 
 <p class="p noindent">Enjoy!
-</p><span data-line=""></span></div>
+</p></section></div></div><span data-line=""></span></div>
 <svg id='math-svg-paths' style='display:none' version='1.1' viewBox='0 0 0 0' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 <defs>
 <path d='M6.844 -3.258C6.994 -3.258 7.183 -3.258 7.183 -3.457S6.994 -3.656 6.854 -3.656H0.887C0.747 -3.656 0.558 -3.656 0.558 -3.457S0.747 -3.258 0.897 -3.258H6.844ZM6.854 -1.325C6.994 -1.325 7.183 -1.325 7.183 -1.524S6.994 -1.724 6.844 -1.724H0.897C0.747 -1.724 0.558 -1.724 0.558 -1.524S0.747 -1.325 0.887 -1.325H6.854Z' id='g3-61'/>
@@ -757,5 +650,10 @@ with a focus on simplicity and plain text readability.
 </svg>
 
 </body>
-
+<script>
+    // initialize printing
+    revealConfig.initPrint();
+    // initialize background embedded images
+    revealConfig.getEmbeddedImages();
+    </script>
 </html>
