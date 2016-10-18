@@ -81,4 +81,4 @@ E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 
 # F3 em diante tem estrutura familiar
 
-![](images/crosses.png)
+![](images/crosses.png){ width:800px; vertical-align:middle }
