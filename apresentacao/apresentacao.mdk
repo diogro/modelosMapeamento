@@ -1,13 +1,18 @@
 [INCLUDE=presentation]
 Title         : Modelos de Mapeamento Genético
-Sub Title     : 
+Sub Title     : Evolução no Porão
 Author        : Diogo Melo
 Affiliation   : LEM - USP
 Email         : diogro@gmail.com
 Reveal Theme  : solarized
 Beamer Theme  : singapore
 Package       : amsmath
+Transition    : linear
+Locale        : pt_br
 
+<script>
+revealConfig.transition='linear';
+</script>
 
 [TITLE]
 
@@ -17,23 +22,29 @@ Ligação entre genótipo de fenótipo
 
 # Populações experimentais
 
+~ Center
 ![](images/f2pop.png)
+~
 
 # Populações experimentais
 
+~ Center
 ![](images/f2popQtl.png)
-
+~
 # QTLs via Anova
 
+~ Center
 ![](images/anova_plot.png)
-
+~
 # Parametrizando via efeitos genéticos
 
 ![](images/centered_anova_plot.png)
 
 # Modelos de regressão 
 
+~ Center
 ![](images/ortogonal_regression_plot.png)
+~
 
 # Regressão básica
 
@@ -77,8 +88,29 @@ E[y_i] = &a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 
 # AIL e resolução de mapeamento
 
+~ Center
 ![](images/f3pop.png)
+~
 
-# F3 em diante tem estrutura familiar
+# F3 tem estrutura familiar
 
-![](images/crosses.png){ width:800px; vertical-align:middle }
+~ Center
+![](images/crosses.png){ width:800px }
+~
+
+# Modelos mistos para a F3
+
+- Para um indivíduo da familia $k$
+
+~ Equation
+E[y_{ik}] = 
+a_j X_{ij}^a +
+d_j X_{ij}^d + \beta_k
+~
+
+~ Equation
+  \beta_k \sim Normal(0, G)
+~
+
+- {.fragment} Mesma coisa pra interval mapping
+
