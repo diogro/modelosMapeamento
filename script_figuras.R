@@ -163,5 +163,10 @@ multipleQTLint = plot_grid(LPR_1_int + ggtitle("Um QTL"), LPR_2_int + ggtitle("D
 save_plot("apresentacao/images/multiQTL_int.png", multipleQTLint, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
 
 
-ggplot(data.frame(x = c(0, 1)), aes(x)) +
-  stat_function(fun = dbeta, geom = "line")
+ggplot(data.frame(x = c(-0, 1)), aes(x)) +
+  stat_function(fun = function(x) dbeta(x, 0.5, 0.5), geom = "line")
+
+par(bg=NA) 
+pdf("apresentacao/images/beta_dist.pdf")
+curve(dbeta(x, 0.5, 0.5), bty="l", xlab = expression('w'[j]), ylab = "Density")
+dev.off()
