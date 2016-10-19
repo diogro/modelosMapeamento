@@ -1,5 +1,5 @@
 [INCLUDE=presentation]
-Title         : Modelos de Mapeamento Genético
+Title         : Explorando Modelos de Mapeamento Genético 
 Sub Title     : Evolução no Porão
 Author        : Diogo Melo
 Affiliation   : LEM - USP
@@ -14,12 +14,14 @@ Package       : url
 Transition    : linear
 Locale        : pt_br
 
+
 ~ MathDefs 
 \parskip 1em
 \newcommand\stackequal[2]{%
   \mathrel{\stackunder[2pt]{\stackon[4pt]{=}{$\scriptscriptstyle#1$}}{%
   $\scriptscriptstyle#2$}}}
 \def\useanchorwidth{F}
+\def\mmh{{\hbox{-}}}
 ~ 
 
 <script>
@@ -115,7 +117,7 @@ E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 - Para um indivíduo da familia $k$
 
 ~ Equation
-E[y_i] = \mu + \beta_{k[i]}
+E[y_i] = \mu + \beta_{k[i]} +
 a_j X_{ij}^a +
 d_j X_{ij}^d 
 ~
@@ -136,6 +138,13 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 ~
 
 - {.fragment} Alta correlação entre os preditores causa um monte de problemas
+- {.fragment} Muito ruido e over-fitting
+
+# Modelos Megalomaníacos
+
+~Center
+![](images/mega_ML_fit.png)
+~
 
 # Notações equivalentes
 
@@ -189,6 +198,8 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 
 - Podemos usar amostradores para montar modelos mais complicados (Stan, JAGS, Bugs, PyMC...)
 - Podemos incluir os termos necessários para AIL (F3 pra frente)
+- Prior deixa explita nossa informação sobre a distribuição dos efeitos
+
 
 ~ Equation
 E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
@@ -209,6 +220,12 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 - Tende a escolher de forma meio arbitraria entre marcadores correlacionados (e encolher o resto pra zero)
 - Todas as estimativas de efeitos tem pelo menos um pouco de shrinkage 
 
+# Lasso e shrinkage
+
+~ Center
+![](images/lasso_shrink.png)
+~
+
 # Como estimar os efeitos precisamente e manter o shrinkage onde precisa?
 
 
@@ -218,4 +235,87 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 
 - {.fragment} Solução óbvia na cabeça de um Bayesiano: vamos colocar um parâmetro de shrinkage por efeito estimado 
 
-- {.fragment} Regra de ouro: "sempre que seu problema é muito complicado, talvez deixar ele mais complicado ajude"
+~ Center
+Regra de ouro: "sempre que seu problema é muito complicado, talvez deixar ele mais complicado ajude" 
+{.fragment; width: 18em; border: solid 1px black; \
+  padding: 1ex; background-color: FloralWhite }
+~
+
+
+# Modelos Penalizados Hierárquicos
+
+- Idéia geral:
+
+~ Equation
+E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
+~ 
+
+~ Equation
+\begin{aligned}
+&P(a_j|\lambda_j) \\
+&P(\lambda_j|\tau) \\
+&P(\tau)
+\end{aligned} 
+~
+
+# Hierarchical adaptive lasso (HAL)
+
+~ Equation
+\begin{aligned}
+P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
+P(\lambda_j|\tau) &= Gamma(1, \tau^2/2) \\
+P(\tau) &= Inv\mmh Gamma(a, b)
+\end{aligned} 
+~
+
+~Center
+- $\lambda_j \rightarrow$ shrinkage local
+- $\tau\rightarrow$ shrinkage global
+~
+
+# Lasso vs HAL
+
+~ Center
+![](images/lasso_HAL_shrink.png)
+~
+
+- Resolve o problema de shrinkage exagerado
+- Não ajuda no mapeamento
+
+# The Horseshoe
+
+~ Equation
+\begin{aligned}
+P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
+P(\lambda_j|\tau) &= Cauchy(1, \tau) \\
+P(\tau) &= Cauchy(1, b) 
+\end{aligned} 
+~
+
+~Center
+- $\lambda_j \rightarrow$ shrinkage local
+- $\tau\rightarrow$ shrinkage global
+~
+
+# Horseshoe e seleção de modelos
+
+- Estimador dos coeficientes tem a forma:
+
+~ Equation
+\begin{aligned}
+\hat a_j^{HC} &= w_ja_j^{ML} \\
+P(w_j) &= Beta(0.5, 0.5)
+\end{aligned} 
+~
+
+~Center
+$w_j$ é um parâmetro de intensidade de shrinkage, ou, um __parâmetro de inclusão__
+{.fragment; width: 18em; border: solid 1px black; \
+  padding: 1ex; background-color: FloralWhite }
+~
+
+# Shrinkage Hierárquico Funciona mesmo
+
+~ Center
+![](images/all_fits.png)
+~
