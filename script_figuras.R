@@ -161,3 +161,7 @@ LPR_2_int = ldply(fl_marker_fits_Trait3a, function(x) summary(x)$coefficients[c(
   )
 multipleQTLint = plot_grid(LPR_1_int + ggtitle("Um QTL"), LPR_2_int + ggtitle("Dois QTLs"))
 save_plot("apresentacao/images/multiQTL_int.png", multipleQTLint, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
+
+
+ggplot(data.frame(x = c(0, 1)), aes(x)) +
+  stat_function(fun = dbeta, geom = "line")
