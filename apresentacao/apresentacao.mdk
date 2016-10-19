@@ -118,7 +118,7 @@ E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 # AIL tem estrutura familiar
 
 ~ Center
-![](images/crosses.png){ width:800px }
+![](images/crosses.png){ width:700px }
 ~
 
 # Modelos hierárquicos para a F3
@@ -152,7 +152,7 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 # Modelos Megalomaníacos
 
 ~Center
-![](images/mega_ML_fit.png){ width:330px; transform-rotate:90 }
+![](images/mega_ML_fit.png){ width:300px }
 ~
 
 # Notações equivalentes
@@ -238,7 +238,7 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 # Como estimar os efeitos precisamente e manter o shrinkage onde precisa?
 
 
-# Modelos Penalizados Hierárquicos
+# Modelos Penalizados Hierárquicos$^2$
 
 - Ou: agora sim, vamos todos enlouquecer
 
@@ -326,7 +326,7 @@ $w_j$ é um parâmetro de intensidade de shrinkage, ou, um __parâmetro de inclu
 # Prior dos parâmetros de inclusão
 
 ~ Center
-![](images/beta_dist.png)
+![](images/beta_dist.png){ width:600px }
 ~
 
 # Shrinkage Hierárquico Funciona mesmo
@@ -340,10 +340,10 @@ $w_j$ é um parâmetro de intensidade de shrinkage, ou, um __parâmetro de inclu
 - Hierárquicos ganham de looonge
 - HAL e HS+ empatam, mas HS+ tem parâmetro de inclusão
 
-# Tipo de resultado
+# Resultado
 
 ![](images/growth_effects_chrom3.png)
 
-# Tipo de resultado
+# Resultados
 
 ![](images/growth_shrinkage_chrom3.png)
