@@ -65,13 +65,9 @@ Ligação entre genótipo de fenótipo
 - Para o marcador $j$ 
 
 ~ Equation
-E[y_i] = \mu +
-a_j X_{ij}^a +
-d_j X_{ij}^d
-~
-
-~ Equation
 \begin{aligned}
+y_i &\sim Normal(E[y_i], R) \\
+E[y_i] &= \mu + a_j X_{ij}^a + d_j X_{ij}^d \\
 X_{ij}^{a} &\in 
 \begin{bmatrix} 
   1 & 0 & -1 
@@ -83,7 +79,17 @@ X_{ij}^{d} &\in
 \end{aligned}
 ~
 
-# Problema de LD
+# Mapeamento usando significância
+
+~ Center
+![](images/LPR_f2.png)
+~
+
+# Problemas de LD
+
+~ Center
+![](images/multiQTL_reg.png)
+~
 
 # Interval mapping
 
@@ -99,14 +105,17 @@ E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 
 # Interval mapping permite mapementos mais precisos
 
+~ Center
+![](images/multiQTL_int.png)
+~
 
-# AIL e resolução de mapeamento
+# Advanced Intercross Lines (AIL) e resolução de mapeamento
 
 ~ Center
 ![](images/f3pop.png)
 ~
 
-# F3 tem estrutura familiar
+# AIL tem estrutura familiar
 
 ~ Center
 ![](images/crosses.png){ width:800px }
@@ -131,7 +140,7 @@ d_j X_{ij}^d
 
 # Modelos megalomaníacos
 
-- Será que podemos ajustar todos os marcadores ao mesmo tempo?
+- Será que podemos usar todos os marcadores ao mesmo tempo?
 
 ~ Equation
 E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
@@ -143,7 +152,7 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 # Modelos Megalomaníacos
 
 ~Center
-![](images/mega_ML_fit.png){ width:10px }
+![](images/mega_ML_fit.png){ width:330px; transform-rotate:90 }
 ~
 
 # Notações equivalentes
@@ -262,7 +271,7 @@ E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
 
 ~ Equation
 \begin{aligned}
-P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
+P(a_j|\lambda_j) &= Normal(0, \lambda_j^2) \\
 P(\lambda_j|\tau) &= Gamma(1, \tau^2/2) \\
 P(\tau) &= Inv\mmh Gamma(a, b)
 \end{aligned} 
@@ -314,8 +323,27 @@ $w_j$ é um parâmetro de intensidade de shrinkage, ou, um __parâmetro de inclu
   padding: 1ex; background-color: FloralWhite }
 ~
 
+# Prior dos parâmetros de inclusão
+
+~ Center
+![](images/beta_dist.png)
+~
+
 # Shrinkage Hierárquico Funciona mesmo
 
 ~ Center
 ![](images/all_fits.png)
 ~
+
+# Validação cruzada em dados reais
+
+- Hierárquicos ganham de looonge
+- HAL e HS+ empatam, mas HS+ tem parâmetro de inclusão
+
+# Tipo de resultado
+
+![](images/growth_effects_chrom3.png)
+
+# Tipo de resultado
+
+![](images/growth_shrinkage_chrom3.png)
