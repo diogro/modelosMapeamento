@@ -143,7 +143,7 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 # Modelos Megalomaníacos
 
 ~Center
-![](images/mega_ML_fit.png)
+![](images/mega_ML_fit.png){ width:10px }
 ~
 
 # Notações equivalentes
