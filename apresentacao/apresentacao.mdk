@@ -30,9 +30,12 @@ revealConfig.transition='linear';
 
 [TITLE]
 
-# Mapeamento de QTLs
+# Arquitetura genética
 
-Ligação entre genótipo de fenótipo
+- Mapa genótipo de fenótipo
+- Padrão de pleiotropia
+- Relação com modularidade
+- Evolução da arquitetura genética
 
 # Populações experimentais
 
@@ -64,7 +67,7 @@ Ligação entre genótipo de fenótipo
 
 - Para o marcador $j$ 
 
-~ Equation
+~ Math
 \begin{aligned}
 y_i &\sim Normal(E[y_i], R) \\
 E[y_i] &= \mu + a_j X_{ij}^a + d_j X_{ij}^d \\
@@ -95,7 +98,7 @@ X_{ij}^{d} &\in
 
 Incluimos marcadores antes e depois do marcador de interesse
 
-~ Equation
+~ Math
 \begin{aligned}
 E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 &+ a_{j-1} X_{ij-1}^{a} + d_{j-1} X_{ij-1}^{d} + \\
@@ -125,13 +128,13 @@ E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
 
 - Para um indivíduo da familia $k$
 
-~ Equation
+~ Math
 E[y_i] = \mu + \beta_{k[i]} +
 a_j X_{ij}^a +
 d_j X_{ij}^d 
 ~
 
-~ Equation
+~ Math
   \beta_k \sim Normal(0, G)
 ~
 
@@ -142,7 +145,7 @@ d_j X_{ij}^d
 
 - Será que podemos usar todos os marcadores ao mesmo tempo?
 
-~ Equation
+~ Math
 E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 ~
 
@@ -155,15 +158,7 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 ![](images/mega_ML_fit.png){ width:300px }
 ~
 
-# Notações equivalentes
 
-~ Equation
-E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
-~
-
-~ Equation {.fragment}
-    (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2 \right \}
-~ 
 
 # Modelos penalizados
 
@@ -171,18 +166,26 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
 
 - {.fragment} The LASSO (least absolute shrinkage and selection operator)
 
-~ Equation {.fragment}
+# Notações equivalentes
+
+~ Math
+E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
+~
+
+~ Math {.fragment}
+    (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2 \right \}
+~ 
+
+# Lasso
+
+~ Math
     (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^n \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2  
     +  \lambda \sum_{j=1}^p \|a_j\| \right \}
 ~ 
 
-# Modelos penalizados
+# Ridge regression
 
-- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero
-
-- Ridge regression
-
-~ Equation {.fragment}
+~ Math
     (\hat \mu, \{\hat a_j\}_{j=1}^p) \stackequal{}{argmin} \left \{ \sum_{i = 1}^N \left ( y_i - \mu - \sum_{j = 1}^p a_j X_{ij}^a \right )^2  
     +  \lambda \sum_{j=1}^p \|a_j\|^2 \right \}
 ~ 
@@ -195,11 +198,11 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
 
 # Formulação Bayesiana do LASSO
 
-~ Equation
+~ Math
 E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
 ~
 
-~ Equation
+~ Math
 P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
 ~
 
@@ -207,18 +210,18 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 
 - Podemos usar amostradores para montar modelos mais complicados (Stan, JAGS, Bugs, PyMC...)
 - Podemos incluir os termos necessários para AIL (F3 pra frente)
-- Prior deixa explita nossa informação sobre a distribuição dos efeitos
+- Prior deixa explicita nossa informação sobre a distribuição dos efeitos genéticos
 
 
-~ Equation
+~ Math
 E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
 ~
 
-~ Equation
+~ Math
   \beta_k \sim Normal(0, G)
 ~
 
-~ Equation
+~ Math
 P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
 ~
 
@@ -255,11 +258,11 @@ Regra de ouro: "sempre que seu problema é muito complicado, talvez deixar ele m
 
 - Idéia geral:
 
-~ Equation
+~ Math
 E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
 ~ 
 
-~ Equation
+~ Math
 \begin{aligned}
 &P(a_j|\lambda_j) \\
 &P(\lambda_j|\tau) \\
@@ -269,7 +272,7 @@ E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
 
 # Hierarchical adaptive lasso (HAL)
 
-~ Equation
+~ Math
 \begin{aligned}
 P(a_j|\lambda_j) &= Normal(0, \lambda_j^2) \\
 P(\lambda_j|\tau) &= Gamma(1, \tau^2/2) \\
@@ -293,11 +296,11 @@ P(\tau) &= Inv\mmh Gamma(a, b)
 
 # The Horseshoe
 
-~ Equation
+~ Math
 \begin{aligned}
 P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
-P(\lambda_j|\tau) &= Cauchy(1, \tau) \\
-P(\tau) &= Cauchy(1, b) 
+P(\lambda_j|\tau) &= Cauchy(0, \tau) \\
+P(\tau) &= Cauchy(0, b) 
 \end{aligned} 
 ~
 
@@ -310,9 +313,9 @@ P(\tau) &= Cauchy(1, b)
 
 - Estimador dos coeficientes tem a forma:
 
-~ Equation
+~ Math
 \begin{aligned}
-\hat a_j^{HC} &= w_ja_j^{ML} \\
+\hat a_j^{HC} &= w_j\hat a_j^{ML} \\
 P(w_j) &= Beta(0.5, 0.5)
 \end{aligned} 
 ~
