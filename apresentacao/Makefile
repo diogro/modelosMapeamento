@@ -1,0 +1,2 @@
+all:
+	madoko apresentacao.mdk

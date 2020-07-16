@@ -1,8 +1,6 @@
 [INCLUDE=presentation]
-Title         : Explorando Modelos de Mapeamento Genético 
-Sub Title     : Evolução no Porão
+Title         : Mapping Pleiotropic Effects
 Author        : Diogo Melo
-Affiliation   : LEM - USP
 Email         : diogro@gmail.com
 Reveal Theme  : solarized
 Beamer Theme  : singapore
@@ -30,20 +28,20 @@ revealConfig.transition='linear';
 
 [TITLE]
 
-# Arquitetura genética
+# Mapping pleiotropic effects
 
-- Mapa genótipo de fenótipo
-- Padrão de pleiotropia
-- Relação com modularidade
-- Evolução da arquitetura genética
+- Basic QTL mapping models
+- Multivariate mapping models
+- Penalized models
+- Genetic effects and genetic covariance
 
-# Populações experimentais
+# Experimental cross
 
 ~ Center
 ![](images/f2pop.png)
 ~
 
-# Populações experimentais
+# Experimental cross
 
 ~ Center
 ![](images/f2popQtl.png)
@@ -53,19 +51,19 @@ revealConfig.transition='linear';
 ~ Center
 ![](images/anova_plot.png)
 ~
-# Parametrizando via efeitos genéticos
+# Orthogonal genetic effects
 
 ![](images/centered_anova_plot.png)
 
-# Modelos de regressão 
+# Regression model
 
 ~ Center
 ![](images/ortogonal_regression_plot.png)
 ~
 
-# Regressão básica
+# Basic Regression
 
-- Para o marcador $j$ 
+- For marker $j$ 
 
 ~ Math
 \begin{aligned}
@@ -82,13 +80,13 @@ X_{ij}^{d} &\in
 \end{aligned}
 ~
 
-# Mapeamento usando significância
+# Using significance of each marker
 
 ~ Center
 ![](images/LPR_f2.png)
 ~
 
-# Problemas de LD
+# LD can be a problem
 
 ~ Center
 ![](images/multiQTL_reg.png)
@@ -96,37 +94,37 @@ X_{ij}^{d} &\in
 
 # Interval mapping
 
-Incluimos marcadores antes e depois do marcador de interesse
+Include flanking markers
 
 ~ Math
 \begin{aligned}
-E[y_i] = & \mu + a_k X_{ij}^{a} + d_k X_{ij}^{d} + \\
+E[y_i] = & \mu + a_j X_{ij}^{a} + d_j X_{ij}^{d} + \\
 &+ a_{j-1} X_{ij-1}^{a} + d_{j-1} X_{ij-1}^{d} + \\
 &+ a_{j+1} X_{ij+1}^{a} + d_{j+1} X_{ij+1}^{d}
 \end{aligned}
 ~
 
-# Interval mapping permite mapementos mais precisos
+# Interval mapping allows for more precise mapping
 
 ~ Center
 ![](images/multiQTL_int.png)
 ~
 
-# Advanced Intercross Lines (AIL) e resolução de mapeamento
+# Advanced Intercross Lines (AIL) and mapping resolution
 
 ~ Center
 ![](images/f3pop.png)
 ~
 
-# AIL tem estrutura familiar
+# AIL (or outbred populations)
 
 ~ Center
 ![](images/crosses.png){ width:700px }
 ~
 
-# Modelos hierárquicos para a F3
+# Mixed models can account for population structure
 
-- Para um indivíduo da familia $k$
+- For an individual in family $k$
 
 ~ Math
 E[y_i] = \mu + \beta_{k[i]} +
@@ -138,35 +136,65 @@ d_j X_{ij}^d
   \beta_k \sim Normal(0, G)
 ~
 
-- {.fragment} Mesma coisa pra interval mapping
-- {.fragment} Funciona, mas é muito lento
+- {.fragment} Same thing can be applied for interval mapping
+- {.fragment} Works, but is slow
+- {.fragment} Approximations: EMMA, EMMAx, GEMMA, GAPIT, FaST-LMM...
 
-# Modelos megalomaníacos
+# Growth as a multivariate trait
 
-- Será que podemos usar todos os marcadores ao mesmo tempo?
+![](images/growth_LG_SM.png)
+
+# Growth in the F3
+
+![](images/growth_LG_SM_F3.png)
+
+# Covariation in growth 
+
+![](images/growth_LG_SM_F3_covF3.png)
+
+# Mapping growth in the F3 from the LG/SM cross
+
+![](images/fig2_growth_manhattan.png)
+
+# Pleiotropic effects
+
+![](images/fig3_growth_pleiotropic_partition_ad_dm.png)
+
+# Genetic effects PCA
+
+![](images/fig3_growth_pleiotropic_partition_ad_dm_PCA.png)
+
+# ancestral predictions using only F3
+
+![](images/growth_multiple_regression_ancestral_prediction_QTL.png)
+
+# Large models
+
+- Can we fit all markers at once?
 
 ~ Math
 E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a + d_j X_{ij}^d
 ~
 
-- {.fragment} Alta correlação entre os preditores causa um monte de problemas
-- {.fragment} Muito ruido e over-fitting
+- {.fragment} High correlation between markers is a problem
+- {.fragment} Lots of noise and over-fitting
 
-# Modelos Megalomaníacos
+# megalomaniac models
 
 ~Center
 ![](images/mega_ML_fit.png){ width:300px }
 ~
 
+# Penalized models
 
-
-# Modelos penalizados
-
-- Toda uma classe de modelos que tenta usar o fato que a maioria dos coeficientes é zero (nem todo marcador tem efeito fenotípico)
+- Large class of models that assume most effects are zero.
 
 - {.fragment} The LASSO (least absolute shrinkage and selection operator)
+- {.fragment} Ridge Regression (less aggressive than LASSO)
+- {.fragment} Elastic net regularization (mixture of LASSO and RR)
 
-# Notações equivalentes
+
+# Maximum likelihood notation
 
 ~ Math
 E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
@@ -190,47 +218,17 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
     +  \lambda \sum_{j=1}^p \|a_j\|^2 \right \}
 ~ 
 
-# O estimador Lasso e Ridge
+# Lasso e Ridge estimator
 
 ~ Center
 ![](images/lasso_ridge.png)
 ~
 
-# Formulação Bayesiana do LASSO
+# LASSO is nice, but...
 
-~ Math
-E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
-~
-
-~ Math
-P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
-~
-
-# Formulação Bayesiana é sempre bom
-
-- Podemos usar amostradores para montar modelos mais complicados (Stan, JAGS, Bugs, PyMC...)
-- Podemos incluir os termos necessários para AIL (F3 pra frente)
-- Prior deixa explicita nossa informação sobre a distribuição dos efeitos genéticos
-
-
-~ Math
-E[y_i] = \mu + \beta_{k[i]} + \sum_{j=1}^N a_j X_{ij}^a
-~
-
-~ Math
-  \beta_k \sim Normal(0, G)
-~
-
-~ Math
-P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\lambda \|a_j\|/\sigma^2}
-~
-
-
-# Lasso é legal, mas...
-
-- Não tem nenhuma forma objetiva de fazer mapeamento
-- Tende a escolher de forma meio arbitraria entre marcadores correlacionados (e encolher o resto pra zero)
-- Todas as estimativas de efeitos tem pelo menos um pouco de shrinkage 
+- No objective mapping method
+- Chooses arbitrary non-zero coefficient among correlated markers
+- All estimates have some shrinkage
 
 # Lasso e shrinkage
 
@@ -238,25 +236,25 @@ P(a_j|\lambda, \sigma^2) = \prod_{j=1}^N \frac{\lambda}{2\sqrt{\sigma^2}} e^{-\l
 ![](images/lasso_shrink.png)
 ~
 
-# Como estimar os efeitos precisamente e manter o shrinkage onde precisa?
+# How to estimate effects precisely and use shrinkage where needed?
 
 
-# Modelos Penalizados Hierárquicos$^2$
+# Penalized hierarchical models$^2$
 
-- Ou: agora sim, vamos todos enlouquecer
+- don't panic
 
-- {.fragment} Solução óbvia na cabeça de um Bayesiano: vamos colocar um parâmetro de shrinkage por efeito estimado 
+- {.fragment} Obvious Bayesian solution: add a per-coefficient shrinkage parameter
 
 ~ Center
-Regra de ouro: "sempre que seu problema é muito complicado, talvez deixar ele mais complicado ajude" 
+Golden rule: "If you have a complicated problem, maybe making it more complicated will help." 
 {.fragment; width: 18em; border: solid 1px black; \
   padding: 1ex; background-color: FloralWhite }
 ~
 
 
-# Modelos Penalizados Hierárquicos
+# Penalized hierarchical models
 
-- Idéia geral:
+- General idea:
 
 ~ Math
 E[y_i] = \mu + \sum_{j=1}^N a_j X_{ij}^a
@@ -291,62 +289,86 @@ P(\tau) &= Inv\mmh Gamma(a, b)
 ![](images/lasso_HAL_shrink.png)
 ~
 
-- Resolve o problema de shrinkage exagerado
-- Não ajuda no mapeamento
-
 # The Horseshoe
 
-~ Math
+~ Center
+![](images/horseshoe.png){ width: 200px }
+~
+
+~ Begin Columns
+~ Column
+~~ Math
 \begin{aligned}
 P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
 P(\lambda_j|\tau) &= Cauchy(0, \tau) \\
 P(\tau) &= Cauchy(0, b) 
 \end{aligned} 
+~~
 ~
-
-~Center
-- $\lambda_j \rightarrow$ shrinkage local
-- $\tau\rightarrow$ shrinkage global
+~ Column
+- $\lambda_j \rightarrow$  local shrinkage
+- $\tau\rightarrow$  global shrinkage
 ~
+~ End Columns
 
-# Horseshoe e seleção de modelos
 
-- Estimador dos coeficientes tem a forma:
+# Horseshoe 
+
+- Effect estimates have the form:
 
 ~ Math
 \begin{aligned}
-\hat a_j^{HC} &= w_j\hat a_j^{ML} \\
+\hat a_j^{HS} &= w_j\hat a_j^{ML} \\
 P(w_j) &= Beta(0.5, 0.5)
 \end{aligned} 
 ~
 
 ~Center
-$w_j$ é um parâmetro de intensidade de shrinkage, ou, um __parâmetro de inclusão__
+$w_j$ is a shrinkage intensity measure, or, an __inclusion parameter__
 {.fragment; width: 18em; border: solid 1px black; \
   padding: 1ex; background-color: FloralWhite }
 ~
 
-# Prior dos parâmetros de inclusão
+# Prior of the shrinkage intensity
 
 ~ Center
 ![](images/beta_dist.png){ width:600px }
 ~
 
-# Shrinkage Hierárquico Funciona mesmo
+# Penalized hierarchical model mapping
 
 ~ Center
 ![](images/all_fits.png)
 ~
 
-# Validação cruzada em dados reais
+# HS mapping on the growth traits
 
-- Hierárquicos ganham de looonge
-- HAL e HS+ empatam, mas HS+ tem parâmetro de inclusão
+![](images/fig5_growth_pleiotropic_partition_ad_dm_GP.png)
 
-# Resultado
+# ancestral predictions with HS
 
-![](images/growth_effects_chrom3.png)
+![](images/growth_multiple_regression_ancestral_prediction_full_genome.png)
 
-# Resultados
+# Linking pleiotropic effects with variation
 
-![](images/growth_shrinkage_chrom3.png)
+~ Math
+\text{Average effect:}  \alpha_{j} = a_{j} + \left\lbrack q_{j} - p_{j} \right\rbrack \circ d_{j}
+~
+
+~ Math
+G_{kk} = \sum_{j=1}^n 2p_{j}q_{j}\alpha_{j(k)}^{2} + \sum_{j=1}^n \sum_{x=1}^n \left\lbrack {2D_{jx}\alpha}_{j(k)}\alpha_{x(k)} \right\rbrack_{j \neq x}
+~
+
+# Linking pleiotropic effects with covariation
+
+~ Math
+G_{kl} = \sum_{j=1}^n 2p_{j}q_{j}\alpha_{j(k)}\alpha_{j(l)} + \sum_{j=1}^n \sum_{x=1}^n \left\lbrack {2 D_{jx}\alpha}_{j(k)}\alpha_{x(l)} \right\rbrack_{j \neq x}
+~
+
+# Additive and Dominance correlations
+
+![](images/growth_cov_prediction_QTL.png)
+
+# Additive and Dominance correlations
+
+![](images/growth_cov_prediction_QTL_regression.png)
