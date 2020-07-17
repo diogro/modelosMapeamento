@@ -4,7 +4,7 @@ library(plyr)
 
 set.seed(42)
 genotypes = c("AA", "AB", "BB")
-phenotypes = c(0.1, 0.05, -0.1)
+phenotypes = c(1, 0.5, -1)
 p = 0.5; q = 1 - p
 N = 300
 pop_index = c(rep(1, floor(N*p^2)), rep(2, floor(N*2*p*q)), rep(3, floor(N*q^2)))
@@ -22,7 +22,7 @@ anova_plot = ggplot(pop_df, aes(Genotypes, Phenotype)) + geom_jitter(size = 2, w
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-save_plot("~/anova_plot.png", anova_plot, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
+save_plot("apresentacao/images/anova_plot.png", anova_plot, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
 
 set.seed(42)
 centered_anova_plot = ggplot(pop_df, aes(Genotypes, Phenotype)) + geom_jitter(size = 2, width = 0.2) + geom_hline(yintercept = 3) +
@@ -32,39 +32,41 @@ centered_anova_plot = ggplot(pop_df, aes(Genotypes, Phenotype)) + geom_jitter(si
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-save_plot("~/centered_anova_plot.png", centered_anova_plot, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
+save_plot("apresentacao/images/centered_anova_plot.png", centered_anova_plot, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
 
 set.seed(42)
 additive_regression = ggplot(pop_df, aes(Genotypes, Phenotype)) + geom_jitter(size = 2, width = 0.2) +
-  scale_y_continuous(breaks = c(0.1, 0.0, 0.05, -0.1)+3, labels = c("a", "d", "0", "-a"))+ 
+  scale_y_continuous(breaks = c(1, 0.5, 0., -1) + mean(pop_df$Phenotype), labels = c("a", "d", "0", "-a"))+ 
   scale_x_discrete(labels = c(-1, 0, 1)) + labs (x = "Genotypes", y = "Phenotype") +
   geom_point(data = medias, size = 5, color = "red") + ggtitle("Additive effects") + 
-  geom_abline(slope = 0.1, intercept = 2.8)+ 
+  geom_abline(slope = 1, intercept = 1)+ 
   theme(
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-save_plot("~/non_sig_additive_regression.png", additive_regression, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
+#save_plot("~/non_sig_additive_regression.png", additive_regression, base_height = 4, base_aspect_ratio = 1.5, bg = "transparent")
 
 
-pop_df$additive = ifelse(pop_df$Genotypes == "LS", 0, ifelse(pop_df$Genotypes=="LL", 1, -1)) 
-pop_df$dominance = ifelse(pop_df$Genotypes == "LS",1,0)
+pop_df$additive = ifelse(pop_df$Genotypes == "AB", 0, ifelse(pop_df$Genotypes=="AA", 1, -1)) 
+pop_df$dominance = ifelse(pop_df$Genotypes == "AB",1,0)
 medias_dm = ddply(pop_df, .(dominance), numcolwise(mean))
 dominance_regression = ggplot(pop_df, aes(dominance, Phenotype)) + 
   geom_jitter(size = 2, width = 0.1) +
-  scale_y_continuous(breaks = c(1, 0.5, 0, -1)+3, labels = c("a", "d", "0", "-a"))+ 
+  scale_y_continuous(breaks = c(1, 0.5, 0, -1) + mean(pop_df$Phenotype), labels = c("a", "d", "0", "-a"))+ 
   scale_x_continuous(breaks = c(0, 1))+ 
   labs (x = "Genotypes", y = "Phenotype") +
   geom_point(data = medias_dm, size = 5, color = "red") + 
-  ggtitle("Regressão dos efeitos de dominância") + 
-  geom_abline(slope = 0.5, intercept = 3)+ 
+  ggtitle("Dominance effects") + 
+  geom_abline(slope = 0.5, intercept =medias_dm$Phenotype[1])+ 
   theme(
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
 
 ortogonal_regression = plot_grid(additive_regression, dominance_regression)
-save_plot("apresentacao/images/ortogonal_regression_plot.png", ortogonal_regression, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
+save_plot("apresentacao/images/ortogonal_regression_plot.png", 
+          ortogonal_regression, base_height = 4, 
+          base_aspect_ratio = 1, ncol = 2, bg = "transparent")
 
 summary(lm(Phenotype ~ additive + dominance, data = pop_df))
 
@@ -114,7 +116,7 @@ LPR_2 = ldply(marker_fits_Trait3a, function(x) summary(x)$coefficients[c(5, 6), 
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-multipleQTL = plot_grid(LPR_plot + ggtitle("Um QTL"), LPR_2 + ggtitle("Dois QTLs"))
+multipleQTL = plot_grid(LPR_plot + ggtitle("One QTL"), LPR_2 + ggtitle("Two QTLs"))
 save_plot("apresentacao/images/multiQTL_reg.png", multipleQTL, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
 
 
@@ -161,7 +163,7 @@ LPR_2_int = ldply(fl_marker_fits_Trait3a, function(x) summary(x)$coefficients[c(
     panel.background = element_rect(fill = "transparent", colour = NA), # or theme_blank()
     plot.background = element_rect(fill = "transparent", colour = NA)
   )
-multipleQTLint = plot_grid(LPR_1_int + ggtitle("Um QTL"), LPR_2_int + ggtitle("Dois QTLs"))
+multipleQTLint = plot_grid(LPR_1_int + ggtitle("One QTL"), LPR_2_int + ggtitle("Two QTLs"))
 save_plot("apresentacao/images/multiQTL_int.png", multipleQTLint, base_height = 4, base_aspect_ratio = 1, ncol = 2, bg = "transparent")
 
 
