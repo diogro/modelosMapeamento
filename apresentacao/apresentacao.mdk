@@ -230,7 +230,7 @@ E[y_i] = \mu + \sum_{j=1}^p a_j X_{ij}^a
 - Chooses arbitrary non-zero coefficient among correlated markers
 - All estimates have some shrinkage
 
-# Lasso e shrinkage
+# Lasso and shrinkage
 
 ~ Center
 ![](images/lasso_shrink.png)
