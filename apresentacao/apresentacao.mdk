@@ -299,7 +299,7 @@ P(\tau) &= Inv\mmh Gamma(a, b)
 ~ Column
 ~~ Math
 \begin{aligned}
-P(a_j|\lambda_j) &= Normal(0, \lambda^2) \\
+P(a_j|\lambda_j) &= Normal(0, \lambda_j^2) \\
 P(\lambda_j|\tau) &= Cauchy(0, \tau) \\
 P(\tau) &= Cauchy(0, b) 
 \end{aligned} 
